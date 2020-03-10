@@ -1,11 +1,6 @@
 #!/bin/zsh
 
-# Init swarm
-if [ "$(docker info | grep Swarm | sed 's/Swarm: //g')" "==" "inactive" ]; then\
-    docker swarm init;
-fi
-
-# Create network if it doesn't exist
+# Create pypi network if it doesn't exist
 docker network inspect pypinet  >/dev/null 2>&1 || docker network create --driver overlay --attachable pypinet
 
 # Run container 
