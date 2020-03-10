@@ -1,0 +1,26 @@
+# Maintain folder structure with .gitkeep:
+# 1. Ignore folder contents
+# 2. Then whitelist .gitkeep in those subfolders
+
+# portainer
+portainer/portainer_data/**
+!/portainer/portainer_data/.gitkeep
+
+# nginx-proxy
+
+# gitlab
+gitlab/data/**
+gitlab/logs/**
+gitlab/config/**
+!/gitlab/data/.gitkeep
+!/gitlab/logs/.gitkeep
+!/gitlab/config/.gitkeep
+!/gitlab/config/gitlab.rb
+
+# gitlab-runner
+
+# pypi
+pypi/dev/**
+pypi/packages/**
+!/pypi/dev/.gitkeep
+!/pypi/packages/.gitkeep
