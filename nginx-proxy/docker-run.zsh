@@ -9,7 +9,7 @@ fi
 docker run -d \
   -p 80:80 \
   --name nginx-proxy \
-  -v ~/nginx-proxy/nginx.conf:/etc/nginx/nginx.conf \
+  -v ~/docker-servers/nginx-proxy/nginx.conf:/etc/nginx/nginx.conf \
   nginx
 
 docker logs -f nginx-proxy
