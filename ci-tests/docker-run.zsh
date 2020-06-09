@@ -4,7 +4,8 @@ project_path=${1-$PWD}
 project_name=$(basename $project_path);
 
 if [ ! -f $project_path/.gitlab-ci.yml ]; then \
-    >&2 echo "No .gitlab-ci.yml file found at $project_path"
+    >&2 echo "Error: No .gitlab-ci.yml file found at $project_path"
+    exit 1
 fi
 
 # Script fixes `gitlab-runner exec` bug:
@@ -36,5 +37,6 @@ if docker run --rm -d \
       test;";
 
   docker stop $project_name-gitlab-runner
+else exit 1
 fi
 

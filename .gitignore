@@ -20,7 +20,5 @@ gitlab/config/**
 # gitlab-runner
 
 # pypi
-pypi/dev/**
-pypi/packages/**
-!/pypi/dev/.gitkeep
-!/pypi/packages/.gitkeep
+pypiserver/packages/**
+!/pypiserver/packages/.gitkeep
