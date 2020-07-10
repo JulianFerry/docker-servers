@@ -1,0 +1,56 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: pypi-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pypi
+  template:
+    metadata:
+      labels:
+        app: pypi
+    spec:
+      containers:
+      - name: pypi-container
+        image: pypiserver/pypiserver:v1.3.2
+        securityContext:
+          allowPrivilegeEscalation: false
+          runAsUser: 0
+        args: ["-P", ".", "-a", ".", "-vv", "packages"]
+        volumeMounts:
+        - mountPath: "/data/packages"
+          name: packages
+        ports:
+        - containerPort: 8080
+          name: http
+      volumes:
+      - name: packages
+        persistentVolumeClaim:
+          claimName: pypi-volume
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: pypi-service
+spec:
+  selector:
+    app: pypi
+  ports:
+  - protocol: TCP
+    targetPort: 8080
+    port: 80
+    name: http
+  type: LoadBalancer
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: pypi-volume
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
