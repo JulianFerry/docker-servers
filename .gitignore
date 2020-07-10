@@ -1,3 +1,5 @@
+**/credentials
+
 # Maintain folder structure with .gitkeep:
 # 1. Ignore folder contents
 # 2. Then whitelist .gitkeep in those subfolders

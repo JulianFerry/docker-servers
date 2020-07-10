@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pypi-pod
+spec:
+  containers:
+  - name: pypi-container
+    image: pypiserver/pypiserver:v1.3.2
